@@ -1,9 +1,12 @@
 # test_lifo.py
 import os
 import random
+from pathlib import Path
+from cocotb_tools.runner import get_runner
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, Timer
+
 
 DEPTH = int(os.getenv("DEPTH", 12))
 DATA_WIDTH = int(os.getenv("DATA_WIDTH", 8))
@@ -164,3 +167,18 @@ async def lifo_random_op_test(dut):
     assert err_cnt == 0, f"TEST FAILED: {err_cnt} error(s) detected"
 
     dut._log.info("TEST PASSED")
+
+def test_lifo_hidden_runner():
+    sim = os.getenv("SIM", "icarus")
+
+    proj_path = Path(__file__).resolve().parent.parent
+
+    sources = [proj_path / "sources/lifo.v"]
+
+    runner = get_runner(sim)
+    runner.build(
+        sources=sources,
+        hdl_toplevel="lifo",
+        always=True,
+    )
+    runner.test(hdl_toplevel="lifo", test_module="test_lifo_hidden_runner")
