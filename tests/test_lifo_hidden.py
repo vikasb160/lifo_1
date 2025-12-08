@@ -180,4 +180,4 @@ def test_lifo_hidden_runner():
         hdl_toplevel="lifo",
         always=True,
     )
-    runner.test(hdl_toplevel="lifo", test_module="test_lifo_hidden_runner")
+    runner.test(hdl_toplevel="lifo", test_module="test_lifo_hidden")
