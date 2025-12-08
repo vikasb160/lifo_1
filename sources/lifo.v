@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module lifo #(
     parameter DEPTH = 12,
     parameter DATA_WIDTH = 8
