@@ -26,4 +26,4 @@ def test_lifo_runner():
         always=True,
     )
 
-    runner.test(hdl_toplevel="lifo", test_module="test_lifo_hidden")
+    runner.test(hdl_toplevel="lifo", test_module="test_lifo")
