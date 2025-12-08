@@ -1,6 +1,8 @@
 # test_lifo.py
 import os
 import random
+from pathlib import Path
+from cocotb_tools.runner import get_runner
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, Timer
