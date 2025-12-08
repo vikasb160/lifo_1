@@ -164,3 +164,18 @@ async def lifo_random_op_test(dut):
     assert err_cnt == 0, f"TEST FAILED: {err_cnt} error(s) detected"
 
     dut._log.info("TEST PASSED")
+
+def test_lifo_hidden_runner():
+    sim = os.getenv("SIM", "icarus")
+
+    proj_path = Path(__file__).resolve().parent.parent
+
+    sources = [proj_path / "sources/lifo.v"]
+
+    runner = get_runner(sim)
+    runner.build(
+        sources=sources,
+        hdl_toplevel="lifo",
+        always=True,
+    )
+    runner.test(hdl_toplevel="lifo", test_module="test_lifo_hidden_runner")
